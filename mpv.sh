@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# Check if the input argument is provided
-if [ -z "$1" ]; then
-  echo "Usage: $0 <url-or-file>"
-  exit 1
-fi
+# User's input
+echo URL or Video File Path
+read input
+
 
 # Define the mpv options for high-quality playback
 MPV_OPTS="\
@@ -47,4 +46,4 @@ MPV_OPTS="\
 "
 
 # Play the video
-mpv $MPV_OPTS "$1"
+mpv $MPV_OPTS $input
