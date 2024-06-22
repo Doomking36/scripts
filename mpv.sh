@@ -65,7 +65,7 @@ MPV_OPTS="\
 # Check if the input is a URL or a file path
 if [[ "$input" =~ ^https?:// ]]; then
   # Input is a URL
-  yt_dlp_url=$(yt-dlp -f best --get-url "$input")
+  yt_dlp_url=$(yt-dlp -f b --get-url "$input")
   if [ $? -eq 0 ]; then
     mpv $MPV_OPTS "$yt_dlp_url"
   else
