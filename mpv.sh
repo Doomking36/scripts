@@ -62,5 +62,16 @@ MPV_OPTS="\
   --sub-shadow-color='#000000' \
 "
 
-# Play the video
-mpv $MPV_OPTS "$input"
+# Check if the input is a URL or a file path
+if [[ "$input" =~ ^https?:// ]]; then
+  # Input is a URL
+  mpv $MPV_OPTS "$input"
+else
+  # Input is a file path
+  if [ -f "$input" ]; then
+    mpv $MPV_OPTS "$input"
+  else
+    echo "File not found: $input"
+    exit 1
+  fi
+fi
