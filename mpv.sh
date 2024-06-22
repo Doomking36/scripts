@@ -65,7 +65,7 @@ MPV_OPTS="\
 # Check if the input is a URL or a file path
 if [[ "$input" =~ ^https?:// ]]; then
   # Input is a URL
-  mpv $MPV_OPTS "$input"
+  yt-dlp -o - "$input" | mpv $MPV_OPTS -
 else
   # Input is a file path
   if [ -f "$input" ]; then
