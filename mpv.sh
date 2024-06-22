@@ -62,19 +62,10 @@ MPV_OPTS="\
   --sub-shadow-color='#000000' \
 "
 
-# Function to clean up the named pipe
-cleanup() {
-    rm -f /tmp/mpv_pipe
-}
-trap cleanup EXIT
-
 # Check if the input is a URL or a file path
 if [[ "$input" =~ ^https?:// ]]; then
-  # Input is a URL
-  mkfifo /tmp/mpv_pipe
-  yt-dlp -o - "$input" > /tmp/mpv_pipe &
-  mpv $MPV_OPTS /tmp/mpv_pipe
-  cleanup
+  # Input is a URL, directly pass it to mpv
+  mpv $MPV_OPTS "$input"
 else
   # Input is a file path
   if [ -f "$input" ]; then
