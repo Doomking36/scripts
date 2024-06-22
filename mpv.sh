@@ -6,6 +6,12 @@ if ! command -v mpv &> /dev/null; then
     exit 1
 fi
 
+# Check if yt-dlp is installed
+if ! command -v yt-dlp &> /dev/null; then
+    echo "yt-dlp could not be found. Please install yt-dlp and try again."
+    exit 1
+fi
+
 # Prompt the user for a URL or video file path
 echo "Enter URL or Video File Path:"
 read input
