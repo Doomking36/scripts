@@ -1,9 +1,20 @@
 #!/bin/bash
 
-# User's input
-echo URL or Video File Path
+# Check if mpv is installed
+if ! command -v mpv &> /dev/null; then
+    echo "mpv could not be found. Please install mpv and try again."
+    exit 1
+fi
+
+# Prompt the user for a URL or video file path
+echo "Enter URL or Video File Path:"
 read input
 
+# Check if input is provided
+if [ -z "$input" ]; then
+    echo "No input provided. Exiting."
+    exit 1
+fi
 
 # Define the mpv options for high-quality playback
 MPV_OPTS="\
@@ -46,4 +57,4 @@ MPV_OPTS="\
 "
 
 # Play the video
-mpv $MPV_OPTS $input
+mpv $MPV_OPTS "$input"
